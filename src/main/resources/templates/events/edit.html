@@ -1,0 +1,117 @@
+<html layout:decorate="~{layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a
+                    th:href="@{/associations/show(association=${event.association.abbreviation})}"
+                    th:text="${event.association.name}"/></li>
+            <li class="breadcrumb-item"><a th:href="@{/events/show(event=${event.id})}" th:text="${event.name}"/>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Evenement aanpassen</li>
+        </ol>
+    </nav>
+    <h1 class="pb-2">Evenement aanpassen:
+        <th:block th:text="${event.name}"></th:block>
+    </h1>
+    <form
+            class="form-horizontal create_election"
+            th:method="POST"
+            th:action="@{/events/edit(event=${event.id})}"
+            th:object="${eventForm}"
+    >
+        <div class="form-group required">
+            <label class="col-sm-2 control-label" for="name">
+                Naam
+            </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{name}" id="name" maxlength="255">
+                <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+
+            </div>
+        </div>
+
+        <div class="form-group required">
+            <label class="col-sm-2 control-label" for="open">
+                Open
+            </label>
+            <div class="col-sm-10">
+                <input type="checkbox" class="form-control" th:field="*{open}" id="open">
+                <p class="alert alert-danger" th:if="${#fields.hasErrors('open')}" th:errors="*{open}"></p>
+            </div>
+        </div>
+
+        <th:block th:if="${currentUser.admin}">
+            <div class="form-group required">
+                <label class="col-sm-2 control-label" for="location">
+                    Locatie
+                </label>
+                <div class="col-sm-10">
+                    <select class="form-control" th:field="*{locationId}" id="location" maxlength="255" required>
+                        <option th:each="location : ${ locations }" th:value="${location.id}" th:text="${location.name}">
+                        </option>
+                    </select>
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{locationId}"></p>
+
+                </div>
+            </div>
+            <div class="form-group required">
+                <label class="col-sm-2 control-label" for="startDate">
+                    Begin
+                </label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" th:field="*{startDate}" id="startDate">
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></p>
+                </div>
+            </div>
+            <div class="form-group required">
+                <label class="col-sm-2 control-label" for="startTime">
+                    Begin
+                </label>
+                <div class="col-sm-10">
+                    <input type="time" class="form-control" th:field="*{startTime}" id="startTime">
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"></p>
+                </div>
+            </div>
+            <div class="form-group required">
+                <label class="col-sm-2 control-label" for="endDate">
+                    Einde
+                </label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" th:field="*{endDate}" id="endDate">
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></p>
+                </div>
+            </div>
+            <div class="form-group required">
+                <label class="col-sm-2 control-label" for="endTime">
+                    Einde
+                </label>
+                <div class="col-sm-10">
+                    <input type="time" class="form-control" th:field="*{endTime}" id="endTime">
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"></p>
+                </div>
+            </div>
+        </th:block>
+        <th:block th:unless="${currentUser.admin}">
+            <input type="hidden" th:field="*{endTime}"/>
+            <input type="hidden" th:field="*{endDate}"/>
+            <input type="hidden" th:field="*{startTime}"/>
+            <input type="hidden" th:field="*{startDate}"/>
+            <input type="hidden" th:field="*{locationId}"/>
+        </th:block>
+
+        <div class="form-group pt-4">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">
+                    Aanpassen
+                </button>
+            </div>
+        </div>
+    </form>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+BEGIN TRANSACTION;
+CREATE EXTENSION IF NOT EXISTS btree_gist;
+create sequence hibernate_sequence start 1 increment 1;
+create table association (id int8 not null, abbreviation varchar(255), name varchar(255), logo_url varchar(255), primary key (id));
+create table association_admins (association_id int8 not null, admins_id int8 not null, primary key (association_id, admins_id));
+create table event (id uuid not null, created timestamp, name varchar(255), open boolean not null, time_range tstzrange not null, association_id int8 not null, location_id uuid not null, primary key (id), EXCLUDE USING gist ( location_id with =, time_range with &&));
+create table item (id int8 not null, available boolean not null, name varchar(255), photo varchar(255), price int4 not null check (price>=0), event_id uuid not null, primary key (id));
+create table location (id uuid not null, name varchar(255), primary key (id));
+create table order_item (id int8 not null, amount int4 not null, name varchar(255), price int4 not null check (price>=0), item_id int8 not null, order_id uuid not null, primary key (id));
+create table orders (id uuid not null, created timestamp, status varchar(255) not null, event_id uuid not null, table_id uuid not null, primary key (id));
+create table tables (id uuid not null, name varchar(255) not null, location_id uuid not null, primary key (id));
+create table users (id int8 not null, admin boolean not null, email varchar(255), first_name varchar(255), last_name varchar(255), username varchar(255), primary key (id));
+alter table if exists association add constraint UK_j7hdrqw5yvwl5kvra0e8geryq unique (abbreviation);
+alter table if exists association add constraint UK_8csqky4snm7llk6xk73rfyrwm unique (name);
+alter table if exists users add constraint UK_r43af9ap4edm43mmtq01oddj6 unique (username);
+alter table if exists association_admins add constraint FK30fada0vlmy277ndakx438vhh foreign key (admins_id) references users;
+alter table if exists association_admins add constraint FKqk113sicp8qylyc1axmcc77o9 foreign key (association_id) references association;
+alter table if exists event add constraint FKb740jyamf5l2nwqt9yls80s7q foreign key (association_id) references association;
+alter table if exists event add constraint FKbb6c0h5nhs5og47iem617ehrl foreign key (location_id) references location;
+alter table if exists item add constraint FKa4yemxo4274ssjiswbbcbyoos foreign key (event_id) references event;
+alter table if exists order_item add constraint FKija6hjjiit8dprnmvtvgdp6ru foreign key (item_id) references item;
+alter table if exists order_item add constraint FKt4dc2r9nbvbujrljv3e23iibt foreign key (order_id) references orders;
+alter table if exists orders add constraint FKmg5djn8knpgswktdindbd3uj0 foreign key (event_id) references event;
+alter table if exists orders add constraint FKrkhrp1dape261t3x3spj7l5ny foreign key (table_id) references tables;
+alter table if exists tables add constraint FKp39k3h17sn06bymyn1q7q5rdd foreign key (location_id) references location;
+
+END TRANSACTION;

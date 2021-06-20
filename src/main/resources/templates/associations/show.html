@@ -1,0 +1,58 @@
+<html layout:decorate="~{layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+    <h1 th:text="${association.name}"></h1>
+    <a th:href="@{/associations/edit(association=${association.abbreviation})}" class="btn btn-info mt-5">Vereniging wijzigen</a>
+
+    <h2>Evenementen</h2>
+    <div class="list-group pt-3 pb-3 pl-5">
+        <span th:each="event : ${association.events}">
+            <a class="col-sm-4 btn btn-primary list-group-item list-group-item-action m-1"
+               th:href="@{/events/show(event=${event.id})}" th:text="${event.name}">
+            </a>
+        </span>
+    </div>
+    <a th:if="${currentUser.admin}" class="btn btn-primary mt-5" th:href="@{/events/create(association=${association.abbreviation})}">
+        Evenement aanmaken
+    </a>
+
+    <h2 class="pt-4">Beheerders</h2>
+    <ul>
+        <li th:each="admin : ${association.admins}">
+            <th:block th:text="${admin}">
+
+            </th:block>
+            <form th:action="@{/associations/deleteAdmin(association=${association.abbreviation})}" th:method="POST"
+                  class="d-inline">
+                <input type="hidden" class="form-control" name="username" th:value="${admin.username}">
+                <button type="submit" class="btn btn-link">
+                    <i class="material-icons">delete</i>
+                </button>
+            </form>
+        </li>
+    </ul>
+
+    <form th:action="@{/associations/addAdmin(association=${association.abbreviation})}" th:method="POST">
+        <div class="form-group required">
+            <label class="col-sm-2 control-label" for="username">
+                Gebruikersnaam
+            </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="username" id="username" maxlength="255">
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">
+                Admin toevoegen
+            </button>
+        </div>
+    </form>
+</section>
+</body>
+</html>

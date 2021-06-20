@@ -1,0 +1,35 @@
+<html layout:decorate="~{layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/locations/}">Locaties</a></li>
+            <li class="breadcrumb-item" th:text="${location.name}"></li>
+        </ol>
+    </nav>
+    <h1 th:text="${location.name}"></h1>
+    <a th:if="${currentUser.admin}" class="btn btn-primary mt-5" th:href="@{/locations/edit(location=${location.id})}">
+        Locatie aanpassen
+    </a>
+    <a th:if="${currentUser.admin}" class="btn btn-primary mt-5" th:href="@{/locations/events(location=${location.id})}">
+        Evenementenlijst
+    </a>
+    <h2>Tafels</h2>
+    <ul class="list-group">
+        <li th:each="table : ${location.tables}" class="list-group-item">
+            <div th:text="${table.name}"></div>
+            <a th:href="@{/orders/create(table=${table.id})}">
+                Bestellen
+            </a>
+        </li>
+    </ul>
+    <a th:if="${currentUser.admin}" class="btn btn-primary mt-5" th:href="@{/tables/create(location=${location.id})}">
+        Tafel aanmaken
+    </a>
+</section>
+</body>
+</html>

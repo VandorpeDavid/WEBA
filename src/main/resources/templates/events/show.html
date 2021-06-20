@@ -1,0 +1,73 @@
+<html layout:decorate="~{layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a
+                    th:href="@{/associations/show(association=${event.association.abbreviation})}"
+                    th:text="${event.association.name}"/></li>
+            <li class="breadcrumb-item active" th:text="${event.name}"></li>
+        </ol>
+    </nav>
+    <h1>
+        <th:block th:text="${event.name}"/>
+    </h1>
+    <div class="list-group pb-3 pl-5">
+        <a class="btn-primary list-group-item list-group-item-action m-1"
+           th:href="@{/orders/todo(event=${event.id})}">Onafgewerkte bestellingen bekijken</a>
+        <a class="btn-primary list-group-item list-group-item-action m-1"
+           th:href="@{/events/edit(event=${event.id})}">Evenement aanpassen</a>
+        <a class="btn-primary list-group-item list-group-item-action m-1"
+           th:href="@{/events/qrcodes(event=${event.id})}">QR codes</a>
+        <a class="btn-primary list-group-item list-group-item-action m-1"
+           th:href="@{/orders(event=${event.id})}">Bestellingslijst</a>
+    </div>
+    <h2>Info</h2>
+    <dl>
+        <dt>Locatie</dt>
+        <dd><a th:href="@{/locations/show(location=${event.location.id})}" th:text="${event.location.name}"></a></dd>
+        <dt>Begin</dt>
+        <dd th:text="${@datetime.apply(event.timeRange.start)}"></dd>
+        <dt>Einde</dt>
+        <dd th:text="${@datetime.apply(event.timeRange.end)}"></dd>
+        <dt>Bar</dt>
+        <dd th:text="${event.open}? 'Open' : 'Gesloten'"></dd>
+    </dl>
+
+    <h2>Items</h2>
+    <a class="btn-primary list-group-item list-group-item-action m-1"
+       th:href="@{/items/create(event=${event.id})}">Item toevoegen</a>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>&nbsp;</th>
+            <th>Naam</th>
+            <th>Prijs</th>
+            <th>Beschikbaar</th>
+            <th>Photo</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item, iter : ${event.items}">
+            <td th:text="${iter.index + 1}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${@money.apply(item.price)}"></td>
+            <td th:text="${item.available}"></td>
+            <td>
+                &nbsp;
+                <img class="item-photo-small" th:src="${item.photo}"/>
+            </td>
+            <td><a th:href="@{/items/edit(item=${item.id})}">
+                Aanpassen
+            </a></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+</html>

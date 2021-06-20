@@ -1,0 +1,69 @@
+<html layout:decorate="~{layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/locations/}">Locaties</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/locations/show(location=${location.id})}" th:text="${location.name}"/></li>
+            <li class="breadcrumb-item active" aria-current="page">Evenementen</li>
+        </ol>
+    </nav>
+    <h1 class="pb-2">
+        <th:block th:text="${past} ? 'Voorbije' : 'Toekomstige'"/>
+        evenementen voor
+        <th:block th:text="${location.name}"></th:block>
+    </h1>
+    <a  th:href="@{/locations/events(past=${!past}, location=${location.id})}" th:text="${ past } ? 'Toekomstige evenementen' : 'Voorbije evenementen'"></a>
+
+    <ul class="pagination" th:if="${events.totalPages > 1}">
+        <li
+                th:each="pageNumber : ${#numbers.sequence(0, events.totalPages - 1)}"
+                class="page-item"
+                th:classappend="${pageNumber==events.number} ? active"
+        >
+            <a th:href="@{/locations/events(past=${past}, size=${events.size}, page=${pageNumber}, location=${location.id})}"
+               th:text="${pageNumber + 1}"
+               class="page-link">
+
+            </a>
+        </li>
+    </ul>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Evenement</th>
+            <th>Vereniging</th>
+            <th>Start</th>
+            <th>Einde</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="event : ${events}">
+            <td><a th:text="${event.name}" th:href="@{/events/show(event=${event.id})}"></a></td>
+            <td><a th:text="${event.association.name}" th:href="@{/associations/show(association=${event.association.abbreviation})}"></a></td>
+            <td th:text="${@datetime.apply(event.timeRange.start)}"></td>
+            <td th:text="${@datetime.apply(event.timeRange.end)}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul class="pagination" th:if="${events.totalPages > 1}">
+        <li
+                th:each="pageNumber : ${#numbers.sequence(0, events.totalPages - 1)}"
+                class="page-item"
+                th:classappend="${pageNumber==events.number} ? active"
+        >
+            <a th:href="@{/locations/events(past=${past}, size=${events.size}, page=${pageNumber}, location=${location.id})}"
+               th:text="${pageNumber + 1}"
+               class="page-link">
+
+            </a>
+        </li>
+    </ul>
+</section>
+
+</body>
+</html>

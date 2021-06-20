@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: initial_changeset
+      author: davdorpe
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: db/initial.sql
+            dbms: postgresql

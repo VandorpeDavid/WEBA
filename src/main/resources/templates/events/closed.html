@@ -1,0 +1,21 @@
+<html layout:decorate="~{layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a
+                    th:href="@{/associations/show(association=${event.association.abbreviation})}"
+                    th:text="${event.association.name}"/></li>
+            <li class="breadcrumb-item active" th:text="${event.name}"></li>
+        </ol>
+    </nav>
+    <h1>
+        <th:block th:text="${event.name}"/>
+    </h1>
+    <p>Dit evenement is gesloten. U kan niet (meer) bestellen.</p>
+</section>
+</body>
+</html>

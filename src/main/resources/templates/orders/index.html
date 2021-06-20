@@ -1,0 +1,84 @@
+<html layout:decorate="~{layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/associations/show(association=${event.association.abbreviation})}" th:text="${event.association.name}"/></li>
+            <li class="breadcrumb-item"><a th:href="@{/events/show(event=${event.id})}" th:text="${event.name}"/></li>
+            <li class="breadcrumb-item active" aria-current="page">Orders</li>
+        </ol>
+    </nav>
+    <h1 class="pb-2">Orders voor event
+        <th:block th:text="${event.name}"></th:block>
+    </h1>
+
+    <ul class="pagination" th:if="${orders.totalPages > 1}">
+        <li
+                th:each="pageNumber : ${#numbers.sequence(0, orders.totalPages - 1)}"
+                class="page-item"
+                th:classappend="${pageNumber==orders.number} ? active"
+        >
+            <a th:href="@{/orders(size=${orders.size}, page=${pageNumber}, event=${event.id})}"
+               th:text="${pageNumber + 1}"
+               class="page-link">
+
+            </a>
+        </li>
+    </ul>
+    <div class="order-index">
+        <div th:each="order : ${orders}"
+             class="card" th:classappend="${'status-' + order.status}">
+            <div class="card-body">
+                <p> Status:
+                    <th:block th:text="${order.status}"/>
+                </p>
+                <p> Tafel:
+                    <th:block th:text="${order.table.name}"/>
+                </p>
+                <p> Totaal:
+                    <th:block th:text="${@money.apply(order.total)}"/>
+                </p>
+                <p> Datum:
+                    <th:block th:text="${@datetime.apply(order.created)}"/>
+                </p>
+                <table class="table table-striped">
+                    <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col">Aantal</th>
+                        <th scope="col">Prijs/stuk</th>
+                        <th scope="col">Prijs totaal</th>
+
+                    </tr>
+                    <tr th:each="item : ${order.items}">
+                        <td th:text="${item.item.name}"></td>
+                        <td th:text="${item.amount}"></td>
+                        <td th:text="${@money.apply(item.item.price)}"></td>
+                        <td th:text="${@money.apply(item.item.price * item.amount)}"></td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <hr/>
+        </div>
+    </div>
+    <ul class="pagination" th:if="${orders.totalPages > 1}">
+        <li
+                th:each="pageNumber : ${#numbers.sequence(0, orders.totalPages - 1)}"
+                class="page-item"
+                th:classappend="${pageNumber==orders.number} ? active"
+        >
+            <a th:href="@{/orders(size=${orders.size}, page=${pageNumber}, event=${event.id})}"
+               th:text="${pageNumber + 1}"
+               class="page-link">
+
+            </a>
+        </li>
+    </ul>
+</section>
+
+</body>
+</html>

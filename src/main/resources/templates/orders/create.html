@@ -1,0 +1,48 @@
+<html layout:decorate="~{layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+    <h1 th:text="${event.name}"></h1>
+
+    <h2 class="pb-2">Bestelling maken voor tafel
+        <th:block th:text="${table.name}"></th:block>
+    </h2>
+    <form
+            class="form-vertical"
+            th:method="POST"
+            th:action="@{/orders/create(table=${table.id})}"
+            th:object="${orderForm}"
+    >
+        <div class="order-form-item-grid">
+            <th:block th:each="item, iter : ${items}">
+                <div class="card order-item">
+                    <h4 class="order-item-name" th:text="${item.name}"></h4>
+                    <div class="order-item-photo">
+                        <img th:src="${item.photo}"/>
+                    </div>
+
+                    <h3 class="order-item-price" th:text="${@money.apply(item.price)}"></h3>
+                    <input type="hidden" th:field="*{items[__${iter.index}__].itemId}"/>
+                    <input class="order-item-count" type="number" min="0" th:field="*{items[__${iter.index}__].amount}" th:data-price="${item.price}"/>
+                    <button type="button" class="inc-dec-bttn decrement-button">-</button>
+                    <button type="button" class="inc-dec-bttn increment-button">+</button>
+                </div>
+            </th:block>
+        </div>
+
+        <div class="form-group pt-4">
+            <div class="">
+                <h4>Totaal: € <span id="orderTotal"></span></h4>
+
+                <button type="submit" class="btn btn-primary">
+                    Bevestig bestelling
+                </button>
+            </div>
+        </div>
+    </form>
+</section>
+
+</body>
+</html>

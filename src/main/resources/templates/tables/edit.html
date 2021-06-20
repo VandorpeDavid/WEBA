@@ -1,0 +1,43 @@
+<html layout:decorate="~{layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/locations/}">Locaties</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/locations/show(location=${location.id})}" th:text="${location.name}"/></li>
+            <li class="breadcrumb-item active" aria-current="page">Tafel aanpassen</li>
+        </ol>
+    </nav>
+    <h1 class="pb-2">Tafel aanpassen: <th:block th:text="${table.name}"></th:block></h1>
+    <form
+            class="form-horizontal"
+            th:method="POST"
+            th:action="@{/tables/edit(table=${table.id})}"
+            th:object="${tableForm}"
+    >
+        <div class="form-group required">
+            <label class="col-sm-2 control-label" for="name">
+                Naam
+            </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{name}" id="name" maxlength="255">
+                <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+
+            </div>
+        </div>
+
+        <div class="form-group pt-4">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">
+                    Aanpassen
+                </button>
+            </div>
+        </div>
+    </form>
+</section>
+
+</body>
+</html>

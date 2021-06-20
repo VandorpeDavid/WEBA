@@ -1,0 +1,167 @@
+.hint {
+    color: gray;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+    padding-left: 0;
+}
+
+#content {
+    padding-top: 2em;
+    padding-bottom: 7em;
+}
+
+.error {
+    margin-left: 2rem;
+    color: red;
+}
+
+.list-group-item + .list-group-item {
+    border-top-width: 1px;
+}
+
+a.as-text, a.as-text:hover, a.as-text:focus {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.navbar-brand img {
+    max-width: 50px;
+
+}
+
+.item-photo-small {
+    max-width: 50px;
+}
+
+.order-form-item-grid {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(auto, 300px));
+    place-content: center;
+}
+
+.order-item {
+    display: grid;
+    grid-template-columns: repeat(2, calc(50% - .5rem));
+    grid-template-rows: repeat(4, auto);
+    padding: 1rem;
+    grid-gap: 1rem;
+}
+
+.order-item-name {
+    grid-area: 1/1/2/2;
+}
+
+
+.order-item-photo {
+    grid-area: 1 / 2 / 3 / 3;
+}
+
+.order-item-photo > img {
+    max-height: 150px;
+    max-width: 100%;
+}
+
+.order-item-price {
+    grid-area: 2/1/3/2;
+}
+
+.order-item-count {
+    grid-area: 3 / 1 / 4 / 3;
+    height: 3rem;
+}
+
+.inc-dec-bttn {
+    background: #ddd;
+    box-shadow: none;
+    border: none;
+    font-size: 2rem;
+    border-radius: .5rem;
+}
+
+.increment-button {
+    grid-area: 4/2/5/3;
+}
+
+.decrement-button {
+    grid-area: 4/1/5/2;
+}
+
+.todo-order {
+    padding: 2rem;
+}
+
+/* Constant */
+.collapsible-wrapper {
+    display: flex;
+    overflow: hidden;
+}
+
+.collapsible-wrapper:after {
+    content: '';
+}
+
+/* Uncollapsed state */
+.collapsible-wrapper.order-list-enter-active:after, .collapsible-wrapper.order-list-leave:after {
+    height: 50px;
+    max-height: 0;
+}
+
+.collapsible.order-list-enter.order-list-enter-active > .collapsible, .collapsible-wrapper.order-list-leave > .collapsible {
+    margin-bottom: 0;
+    max-height: 1000000px;
+    transform: scale(1);
+}
+
+/* Collapsed state */
+.order-list-enter:not(.order-list-enter-active):after, .collapsible-wrapper.order-list-leave-active:after {
+    height: 0;
+    max-height: 50px;
+}
+
+.order-list-enter:not(.order-list-enter-active) > .collapsible, .collapsible-wrapper.order-list-leave.order-list-leave-active > .collapsible {
+    margin-bottom: -2000px;
+    max-height: 0;
+    transform: scale(0);
+}
+
+/* Transitions to uncollapsed */
+.collapsible-wrapper.order-list-enter-active:after {
+    transition: height 1s linear, max-height 0s 1s linear;
+}
+
+.collapsible-wrapper.order-list-enter-active > .collapsible {
+    transition: margin-bottom 1s cubic-bezier(0, 0, 0, 1), transform 1s linear;
+}
+
+/* Transitions to collapsed */
+.collapsible-wrapper.order-list-leave-active > .collapsible {
+    transition: margin-bottom 1s cubic-bezier(1, 0, 1, 1),
+    transform 1s linear, max-height 0s 1s;
+}
+
+.collapsible-wrapper.order-list-leave-active:after {
+    transition: height 1s linear;
+}
+
+.order-index .status-ORDERED {
+    border: 3px solid black;
+}
+
+.order-index .status-CANCELLED {
+    border: 3px solid red;
+}
+
+.order-index .status-COMPLETED {
+    border: 3px solid green;
+}
+
+.order-index .status-STARTED {
+    border: 3px solid blue;
+}

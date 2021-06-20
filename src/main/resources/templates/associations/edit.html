@@ -1,0 +1,68 @@
+<html layout:decorate="~{layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/associations/show(association=${association.abbreviation})}" th:text="${association.name}"/></li>
+            <li class="breadcrumb-item active" aria-current="page">Vereniging aanpassen</li>
+        </ol>
+    </nav>
+    <h1 class="pb-2">Vereniging aanpassen</h1>
+    <form
+            class="form-horizontal"
+            th:method="POST"
+            th:action="@{/associations/edit(association=${association.abbreviation})}"
+            th:object="${associationForm}">
+        <th:block th:if="${currentUser.admin}">
+            <div class="form-group required">
+                <label class="col-sm-2 control-label" for="name">
+                    Naam
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{name}" id="name" maxlength="255">
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+
+                </div>
+            </div>
+
+            <div class="form-group required">
+                <label class="col-sm-2 control-label" for="abbreviation">
+                    Afkorting
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{abbreviation}" id="abbreviation"
+                           maxlength="255">
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('abbreviation')}" th:errors="*{abbreviation}"></p>
+
+                </div>
+            </div>
+        </th:block>
+        <th:block th:unless="${currentUser.admin}">
+            <input type="hidden" th:field="*{name}"/>
+            <input type="hidden" th:field="*{abbreviation}"/>
+        </th:block>
+        <div class="form-group required">
+            <label class="col-sm-2 control-label" for="logoUrl">
+                Logo url (https)
+            </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{logoUrl}" id="logoUrl" maxlength="255">
+                <p class="alert alert-danger" th:if="${#fields.hasErrors('logoUrl')}" th:errors="*{logoUrl}"></p>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">
+                    Opslaan
+                </button>
+            </div>
+        </div>
+    </form>
+</section>
+
+</body>
+</html>

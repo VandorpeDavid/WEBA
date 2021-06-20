@@ -1,0 +1,25 @@
+<html layout:decorate="~{layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+    <p>Welkom op de WiNA's Economische Bar Applicatie (WEBA).</p>
+    <div th:if="${adminAssociations.size() > 0}">
+        U kan volgende verenigingen beheren:
+        <div class="list-group pt-3 pb-3 pl-5">
+            <span th:each="association : ${adminAssociations}">
+                <a class="col-sm-4 btn btn-primary list-group-item list-group-item-action m-1"
+                   th:href="@{/associations/show(association=${association.abbreviation})}"
+                   th:text="${association.name}"></a>
+            </span>
+        </div>
+    </div>
+
+    <p th:if="${adminAssociations.size() == 0}">
+        U heeft geen rechten op dit platform.
+    </p>
+</section>
+
+</body>
+</html>

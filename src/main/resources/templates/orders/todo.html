@@ -1,0 +1,15 @@
+<html layout:decorate="~{layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+    <h1 class="pb-2">Bestellingen voor event
+        <th:block th:text="${event.name}"></th:block>
+    </h1>
+
+    <div id="bar-orders" th:data-id="${event.id}">Controleer of javascript aan staat.</div>
+    <script src="/dist/bar-bundle.js"></script>
+</section>
+</body>
+</html>
