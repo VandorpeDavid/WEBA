@@ -8,10 +8,10 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a th:href="@{/associations/show(association=${event.association.abbreviation})}" th:text="${event.association.name}"/></li>
             <li class="breadcrumb-item"><a th:href="@{/events/show(event=${event.id})}" th:text="${event.name}"/></li>
-            <li class="breadcrumb-item active" aria-current="page">Item aanmaken</li>
+            <li class="breadcrumb-item active" aria-current="page" th:text="#{events.items.actions.add}" ></li>
         </ol>
     </nav>
-    <h1 class="pb-2">Item aanmaken voor <th:block th:text="${event.name}"></th:block></h1>
+    <h1 class="pb-2" th:text="#{events.items.actions.add.long(${event.name})}"></th:block></h1>
     <form
             class="form-horizontal"
             th:method="POST"
@@ -19,8 +19,7 @@
             th:object="${itemForm}"
     >
         <div class="form-group required">
-            <label class="col-sm-2 control-label" for="name">
-                Naam
+            <label class="col-sm-2 control-label" for="name" th:text="#{events.items.name}">
             </label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" th:field="*{name}" id="name" maxlength="255" required>
@@ -29,8 +28,8 @@
         </div>
 
         <div class="form-group required">
-            <label class="col-sm-2 control-label" for="price">
-                Prijs (in centen)
+            <label class="col-sm-2 control-label" for="price" th:text="#{events.items.price.long}">
+
             </label>
             <div class="col-sm-10">
                 <input type="number" class="form-control" th:field="*{price}" id="price" min="0" required>
@@ -39,8 +38,7 @@
         </div>
 
         <div class="form-group required">
-            <label class="col-sm-2 control-label" for="available">
-                Beschikbaar
+            <label class="col-sm-2 control-label" for="available" th:text="#{events.items.available}">
             </label>
             <div class="col-sm-10">
                 <input type="checkbox" class="form-control" th:field="*{available}" id="available">
@@ -49,8 +47,7 @@
         </div>
 
         <div class="form-group required">
-            <label class="col-sm-2 control-label" for="photo">
-                Afbeelding
+            <label class="col-sm-2 control-label" for="photo" th:text="#{events.items.photo}">
             </label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" th:field="*{photo}" id="photo" maxlength="255">
@@ -59,8 +56,7 @@
         </div>
         <div class="form-group pt-4">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary">
-                    Aanmaken
+                <button type="submit" class="btn btn-primary" th:text="#{common.actions.save}">
                 </button>
             </div>
         </div>

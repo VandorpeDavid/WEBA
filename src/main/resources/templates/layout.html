@@ -38,9 +38,10 @@
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="/">
         <th:block th:if="${activeAssociation != null}">
-            <img th:if="${activeAssociation.logoUrl != null && activeAssociation.logoUrl != '' }" th:src="${activeAssociation.logoUrl}"/>
+            <img th:if="${activeAssociation.logoUrl != null && activeAssociation.logoUrl != '' }"
+                 th:src="${activeAssociation.logoUrl}"/>
 
-            <th:block th:text="${activeAssociation.abbreviation}" />
+            <th:block th:text="${activeAssociation.abbreviation}"/>
         </th:block>
         <th:block th:unless="${activeAssociation != null}">
             <img src="https://wina-gent.be/assets/wina-logo-37db21ca07defda43d31f648379eee55c1e6eb5991ea9d8adf466355ede939dd.svg"/>
@@ -48,6 +49,8 @@
         </th:block>
     </a>
     <ul class="nav navbar-nav navbar-right">
+        <li th:unless="${#locale.language == 'en'}"><a th:href="${@changeLocaleUrl.apply('en')}" class="as-text">English</a></li>
+        <li th:unless="${#locale.language == 'nl'}"><a th:href="${@changeLocaleUrl.apply('nl')}" class="as-text">Nederlands</a></li>
         <li><a href="/logout" class="as-text">Logout</a></li>
     </ul>
 </nav>

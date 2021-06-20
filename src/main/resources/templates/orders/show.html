@@ -4,18 +4,16 @@
 </head>
 <body>
 <section layout:fragment="content">
-    <h1 class="pb-2">Bestelling voor tafel
-        <th:block th:text="${order.table.name}"></th:block>
+    <h1 class="pb-2" th:text="#{orders.actions.show.long(${order.table.name})}">
     </h1>
 
     <div id="order-view" th:classappend="${'status-' + order.status}" th:data-id="${order.id}">
         <table class="table table-striped">
             <tr>
-                <th scope="col">Item</th>
-                <th scope="col">Aantal</th>
-                <th scope="col">Prijs/stuk</th>
-                <th scope="col">Prijs totaal</th>
-
+                <th scope="col" th:text="#{orders.item}"></th>
+                <th scope="col" th:text="#{orders.item.amount}"></th>
+                <th scope="col" th:text="#{orders.item.priceEach}"></th>
+                <th scope="col" th:text="#{orders.item.priceTotal}"></th>
             </tr>
             <tr th:each="item : ${order.items}">
                 <td th:text="${item.name}"></td>
@@ -34,7 +32,7 @@
 
         </div>
 
-        <h4>Er staan op dit moment <span id="queuePosition" th:text="${queuePosition+1}"></span> bestellingen voor jou in de wachtrij.</h4>
+        <h4 th:utext="#{orders.queuePosition(${queuePosition+1})}"></h4>
     </div>
     <script>
         $(function () {

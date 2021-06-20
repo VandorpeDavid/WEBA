@@ -15,7 +15,7 @@
     <h1>
         <th:block th:text="${event.name}"/>
     </h1>
-    <p>Dit evenement is gesloten. U kan niet (meer) bestellen.</p>
+    <p th:text="#{events.state.closed}"></p>
 </section>
 </body>
 </html>

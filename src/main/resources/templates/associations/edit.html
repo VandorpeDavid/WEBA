@@ -6,11 +6,12 @@
 <section layout:fragment="content">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a th:href="@{/associations/show(association=${association.abbreviation})}" th:text="${association.name}"/></li>
-            <li class="breadcrumb-item active" aria-current="page">Vereniging aanpassen</li>
+            <li class="breadcrumb-item"><a th:href="@{/associations/show(association=${association.abbreviation})}"
+                                           th:text="${association.name}"/></li>
+            <li class="breadcrumb-item active" aria-current="page" th:text="#{associations.actions.edit}"></li>
         </ol>
     </nav>
-    <h1 class="pb-2">Vereniging aanpassen</h1>
+    <h1 class="pb-2" th:text="#{associations.actions.edit}"></h1>
     <form
             class="form-horizontal"
             th:method="POST"
@@ -18,8 +19,7 @@
             th:object="${associationForm}">
         <th:block th:if="${currentUser.admin}">
             <div class="form-group required">
-                <label class="col-sm-2 control-label" for="name">
-                    Naam
+                <label class="col-sm-2 control-label" for="name" th:text="#{associations.name}">
                 </label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{name}" id="name" maxlength="255">
@@ -29,13 +29,13 @@
             </div>
 
             <div class="form-group required">
-                <label class="col-sm-2 control-label" for="abbreviation">
-                    Afkorting
+                <label class="col-sm-2 control-label" for="abbreviation" th:text="#{associations.abbreviation}">
                 </label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{abbreviation}" id="abbreviation"
                            maxlength="255">
-                    <p class="alert alert-danger" th:if="${#fields.hasErrors('abbreviation')}" th:errors="*{abbreviation}"></p>
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('abbreviation')}"
+                       th:errors="*{abbreviation}"></p>
 
                 </div>
             </div>
@@ -45,8 +45,7 @@
             <input type="hidden" th:field="*{abbreviation}"/>
         </th:block>
         <div class="form-group required">
-            <label class="col-sm-2 control-label" for="logoUrl">
-                Logo url (https)
+            <label class="col-sm-2 control-label" for="logoUrl" th:text="#{associations.logoUrl}">
             </label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" th:field="*{logoUrl}" id="logoUrl" maxlength="255">
@@ -56,8 +55,8 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary">
-                    Opslaan
+                <button type="submit" class="btn btn-primary" th:text="#{common.actions.save}">
+
                 </button>
             </div>
         </div>

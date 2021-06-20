@@ -4,17 +4,15 @@
 </head>
 <body>
 <section layout:fragment="content">
-    <h1>Verenigingen</h1>
+    <h1 th:text="#{associations}"></h1>
     <div class="list-group pt-3 pb-3 pl-5">
         <span th:each="association : ${ associations }">
             <a class="col-sm-4 btn btn-primary list-group-item list-group-item-action m-1" th:href="@{/associations/show(association=${association.abbreviation})}" th:text="${association.name}"/>
         </span>
     </div>
-    <a class="btn btn-primary mt-5" th:href="@{/associations/create}">Vereniging toevoegen</a>
-
-    <a class="btn btn-info mt-5" th:href="@{/admins}">Beheerders</a>
-    <a class="btn btn-info mt-5" th:href="@{/locations}">Locaties</a>
-
+    <a class="btn btn-primary mt-5" th:href="@{/associations/create}" th:text="#{associations.actions.add}"></a>
+    <a class="btn btn-info mt-5" th:href="@{/admins}" th:text="#{admins}"></a>
+    <a class="btn btn-info mt-5" th:href="@{/locations}" th:text="#{locations}"></a>
 </section>
 
 </body>

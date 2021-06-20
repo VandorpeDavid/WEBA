@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum OrderStatus {
-    ORDERED(false), STARTED(false), CANCELLED(true), COMPLETED(true);
+    ORDERED(false), STARTED(false), REJECTED(true), COMPLETED(true);
     private final boolean complete;
 
     OrderStatus(boolean complete) {

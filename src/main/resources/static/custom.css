@@ -154,7 +154,7 @@ a.as-text, a.as-text:hover, a.as-text:focus {
     border: 3px solid black;
 }
 
-.order-index .status-CANCELLED {
+.react-order.status-REJECTED, .order-index .status-REJECTED {
     border: 3px solid red;
 }
 
@@ -162,6 +162,6 @@ a.as-text, a.as-text:hover, a.as-text:focus {
     border: 3px solid green;
 }
 
-.order-index .status-STARTED {
+.react-order.status-STARTED, .order-index .status-STARTED {
     border: 3px solid blue;
 }

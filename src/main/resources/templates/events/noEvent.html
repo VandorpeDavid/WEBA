@@ -6,7 +6,7 @@
 <section layout:fragment="content">
     <nav aria-label="breadcrumb">
     </nav>
-    <p>Er is momenteel geen evenement in <th:block th:text="${location.name}"></th:block></p>
+    <p th:text="#{orders.noEvent(${location.name})}"></th:block></p>
 </section>
 </body>
 </html>

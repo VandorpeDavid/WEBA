@@ -6,9 +6,9 @@
 <body>
 <section layout:fragment="content">
     <h1 th:text="${association.name}"></h1>
-    <a th:href="@{/associations/edit(association=${association.abbreviation})}" class="btn btn-info mt-5">Vereniging wijzigen</a>
+    <a th:href="@{/associations/edit(association=${association.abbreviation})}" class="btn btn-info mt-5" th:text="#{associations.actions.edit}"></a>
 
-    <h2>Evenementen</h2>
+    <h2 th:text="#{events}"></h2>
     <div class="list-group pt-3 pb-3 pl-5">
         <span th:each="event : ${association.events}">
             <a class="col-sm-4 btn btn-primary list-group-item list-group-item-action m-1"
@@ -16,11 +16,10 @@
             </a>
         </span>
     </div>
-    <a th:if="${currentUser.admin}" class="btn btn-primary mt-5" th:href="@{/events/create(association=${association.abbreviation})}">
-        Evenement aanmaken
+    <a th:if="${currentUser.admin}" class="btn btn-primary mt-5" th:href="@{/events/create(association=${association.abbreviation})}" th:text="#{events.actions.add}">
     </a>
 
-    <h2 class="pt-4">Beheerders</h2>
+    <h2 class="pt-4" th:text="#{associations.admins}"></h2>
     <ul>
         <li th:each="admin : ${association.admins}">
             <th:block th:text="${admin}">
@@ -30,7 +29,7 @@
                   class="d-inline">
                 <input type="hidden" class="form-control" name="username" th:value="${admin.username}">
                 <button type="submit" class="btn btn-link">
-                    <i class="material-icons">delete</i>
+                    <i class="material-icons" th:actions="#{associations.admin.actions.delete}"></i>
                 </button>
             </form>
         </li>
@@ -38,8 +37,7 @@
 
     <form th:action="@{/associations/addAdmin(association=${association.abbreviation})}" th:method="POST">
         <div class="form-group required">
-            <label class="col-sm-2 control-label" for="username">
-                Gebruikersnaam
+            <label class="col-sm-2 control-label" for="username" th:text="#{users.username}">
             </label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="username" id="username" maxlength="255">
@@ -48,8 +46,7 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">
-                Admin toevoegen
+            <button type="submit" class="btn btn-primary" th:text="#{associations.admins.actions.add}">
             </button>
         </div>
     </form>

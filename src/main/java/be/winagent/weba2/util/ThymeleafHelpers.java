@@ -4,6 +4,7 @@ import be.winagent.weba2.config.TimezoneConfiguration;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -17,6 +18,10 @@ public class ThymeleafHelpers {
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
     private final TimezoneConfiguration timezoneConfiguration;
 
+    @Bean
+    public Function<String, String> changeLocaleUrl() {
+        return (locale) -> ServletUriComponentsBuilder.fromCurrentRequest().replaceQueryParam("lang", locale).toUriString();
+    }
 
     @Bean
     public Function<Integer, String> money() {

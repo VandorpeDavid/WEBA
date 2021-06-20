@@ -6,12 +6,12 @@
 <section layout:fragment="content">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a th:href="@{/locations/}">Locaties</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/locations/}" th:text="#{locations}"></a></li>
             <li class="breadcrumb-item"><a th:href="@{/locations/show(location=${location.id})}" th:text="${location.name}"/></li>
-            <li class="breadcrumb-item active" aria-current="page">Locatie aanpassen</li>
+            <li class="breadcrumb-item active" aria-current="page" th:text="#{locations.actions.edit}"></li>
         </ol>
     </nav>
-    <h1 class="pb-2">Tafel aanpassen: <th:block th:text="${location.name}"></th:block></h1>
+    <h1 class="pb-2" th:text="#{locations.actions.edit.long(${location.name})}"></h1>
     <form
             class="form-horizontal"
             th:method="POST"
@@ -19,11 +19,10 @@
             th:object="${locationForm}"
     >
         <div class="form-group required">
-            <label class="col-sm-2 control-label" for="name">
-                Naam
+            <label class="col-sm-2 control-label" for="name" th:text="#{locations.name}">
             </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" th:field="*{name}" id="name" maxlength="255">
+                <input type="text" class="form-control" th:field="*{name}" id="name" maxlength="255" required>
                 <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
 
             </div>
@@ -31,8 +30,7 @@
 
         <div class="form-group pt-4">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary">
-                    Aanpassen
+                <button type="submit" class="btn btn-primary" th:text="#{common.actions.save}">
                 </button>
             </div>
         </div>

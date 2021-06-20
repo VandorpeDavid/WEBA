@@ -11,11 +11,10 @@
                     th:text="${event.association.name}"/></li>
             <li class="breadcrumb-item"><a th:href="@{/events/show(event=${event.id})}" th:text="${event.name}"/>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Evenement aanpassen</li>
+            <li class="breadcrumb-item active" aria-current="page" th:text="#{events.actions.edit}"></li>
         </ol>
     </nav>
-    <h1 class="pb-2">Evenement aanpassen:
-        <th:block th:text="${event.name}"></th:block>
+    <h1 class="pb-2" th:text="#{events.actions.edit.long(${event.name})}"></th:block>
     </h1>
     <form
             class="form-horizontal create_election"
@@ -24,19 +23,16 @@
             th:object="${eventForm}"
     >
         <div class="form-group required">
-            <label class="col-sm-2 control-label" for="name">
-                Naam
+            <label class="col-sm-2 control-label" for="name" th:text="#{events.name}">
             </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" th:field="*{name}" id="name" maxlength="255">
+                <input type="text" class="form-control" th:field="*{name}" id="name" maxlength="255" required>
                 <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
 
             </div>
         </div>
-
         <div class="form-group required">
-            <label class="col-sm-2 control-label" for="open">
-                Open
+            <label class="col-sm-2 control-label" for="open" th:text="#{events.open}">
             </label>
             <div class="col-sm-10">
                 <input type="checkbox" class="form-control" th:field="*{open}" id="open">
@@ -46,8 +42,7 @@
 
         <th:block th:if="${currentUser.admin}">
             <div class="form-group required">
-                <label class="col-sm-2 control-label" for="location">
-                    Locatie
+                <label class="col-sm-2 control-label" for="location" th:text="#{events.location}">
                 </label>
                 <div class="col-sm-10">
                     <select class="form-control" th:field="*{locationId}" id="location" maxlength="255" required>
@@ -59,8 +54,7 @@
                 </div>
             </div>
             <div class="form-group required">
-                <label class="col-sm-2 control-label" for="startDate">
-                    Begin
+                <label class="col-sm-2 control-label" for="startDate" th:text="#{events.timeRange.start.date}">
                 </label>
                 <div class="col-sm-10">
                     <input type="date" class="form-control" th:field="*{startDate}" id="startDate">
@@ -68,8 +62,7 @@
                 </div>
             </div>
             <div class="form-group required">
-                <label class="col-sm-2 control-label" for="startTime">
-                    Begin
+                <label class="col-sm-2 control-label" for="startTime" th:text="#{events.timeRange.start.time}">
                 </label>
                 <div class="col-sm-10">
                     <input type="time" class="form-control" th:field="*{startTime}" id="startTime">
@@ -77,8 +70,7 @@
                 </div>
             </div>
             <div class="form-group required">
-                <label class="col-sm-2 control-label" for="endDate">
-                    Einde
+                <label class="col-sm-2 control-label" for="endDate" th:text="#{events.timeRange.end.date}">
                 </label>
                 <div class="col-sm-10">
                     <input type="date" class="form-control" th:field="*{endDate}" id="endDate">
@@ -86,8 +78,7 @@
                 </div>
             </div>
             <div class="form-group required">
-                <label class="col-sm-2 control-label" for="endTime">
-                    Einde
+                <label class="col-sm-2 control-label" for="endTime" th:text="#{events.timeRange.end.time}">
                 </label>
                 <div class="col-sm-10">
                     <input type="time" class="form-control" th:field="*{endTime}" id="endTime">
@@ -105,8 +96,8 @@
 
         <div class="form-group pt-4">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary">
-                    Aanpassen
+                <button type="submit" class="btn btn-primary" th:text="#{common.actions.save}">
+
                 </button>
             </div>
         </div>

@@ -17,38 +17,38 @@
     </h1>
     <div class="list-group pb-3 pl-5">
         <a class="btn-primary list-group-item list-group-item-action m-1"
-           th:href="@{/orders/todo(event=${event.id})}">Onafgewerkte bestellingen bekijken</a>
+           th:href="@{/orders/todo(event=${event.id})}" th:text="#{events.actions.viewUnfinishedOrders}"></a>
         <a class="btn-primary list-group-item list-group-item-action m-1"
-           th:href="@{/events/edit(event=${event.id})}">Evenement aanpassen</a>
+           th:href="@{/events/edit(event=${event.id})}" th:text="#{events.actions.edit}"></a>
         <a class="btn-primary list-group-item list-group-item-action m-1"
-           th:href="@{/events/qrcodes(event=${event.id})}">QR codes</a>
+           th:href="@{/events/qrcodes(event=${event.id})}" th:text="#{locations.actions.printQrCodes}"></a>
         <a class="btn-primary list-group-item list-group-item-action m-1"
-           th:href="@{/orders(event=${event.id})}">Bestellingslijst</a>
+           th:href="@{/orders(event=${event.id})}" th:text="#{locations.actions.viewOrderList}"></a>
     </div>
-    <h2>Info</h2>
+    <h2 th:text="#{common.info}"></h2>
     <dl>
-        <dt>Locatie</dt>
+        <dt th:text="#{events.location}"></dt>
         <dd><a th:href="@{/locations/show(location=${event.location.id})}" th:text="${event.location.name}"></a></dd>
-        <dt>Begin</dt>
+        <dt th:text="#{events.timeRange.start}"></dt>
         <dd th:text="${@datetime.apply(event.timeRange.start)}"></dd>
-        <dt>Einde</dt>
+        <dt th:text="#{events.timeRange.end}"></dt>
         <dd th:text="${@datetime.apply(event.timeRange.end)}"></dd>
-        <dt>Bar</dt>
-        <dd th:text="${event.open}? 'Open' : 'Gesloten'"></dd>
+        <dt th:text="#{events.bar}"></dt>
+        <dd th:text="${event.open}? #{events.bar.open} : #{events.bar.closed}"></dd>
     </dl>
 
-    <h2>Items</h2>
+    <h2 th:text="#{events.items}"></h2>
     <a class="btn-primary list-group-item list-group-item-action m-1"
-       th:href="@{/items/create(event=${event.id})}">Item toevoegen</a>
+       th:href="@{/items/create(event=${event.id})}" th:text="#{events.items.actions.add}"></a>
 
     <table class="table table-striped">
         <thead>
         <tr>
             <th>&nbsp;</th>
-            <th>Naam</th>
-            <th>Prijs</th>
-            <th>Beschikbaar</th>
-            <th>Photo</th>
+            <th th:text="#{events.items.name}"></th>
+            <th th:text="#{events.items.price}"></th>
+            <th th:text="#{events.items.availability}"></th>
+            <th th:text="#{events.items.photo}"></th>
             <th>&nbsp;</th>
         </tr>
         </thead>
@@ -57,14 +57,14 @@
             <td th:text="${iter.index + 1}"></td>
             <td th:text="${item.name}"></td>
             <td th:text="${@money.apply(item.price)}"></td>
-            <td th:text="${item.available}"></td>
+            <td th:text="${item.available} ? #{events.items.availability.available} : #{events.items.availability.unavailable}"></td>
             <td>
-                &nbsp;
                 <img class="item-photo-small" th:src="${item.photo}"/>
             </td>
-            <td><a th:href="@{/items/edit(item=${item.id})}">
-                Aanpassen
-            </a></td>
+            <td>
+                <a th:href="@{/items/edit(item=${item.id})}" th:text="#{events.items.actions.edit}">
+                </a>
+            </td>
         </tr>
         </tbody>
     </table>

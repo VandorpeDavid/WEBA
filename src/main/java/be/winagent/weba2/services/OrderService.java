@@ -18,7 +18,7 @@ public interface OrderService {
     Order reset(Order order);
 
     Order complete(Order order);
-    Order cancel(Order order);
+    Order reject(Order order);
     Page<Order> listOrders(Event event, Pageable pageable);
     List<Order> listUnfinishedOrders(Event event);
     int getQueuePosition(Order order);

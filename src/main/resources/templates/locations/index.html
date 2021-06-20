@@ -4,13 +4,13 @@
 </head>
 <body>
 <section layout:fragment="content">
-    <h1>Locaties</h1>
+    <h1 th:text="#{locations}"></h1>
     <div class="list-group pt-3 pb-3 pl-5">
         <span th:each="location : ${ locations }">
             <a class="col-sm-4 btn btn-primary list-group-item list-group-item-action m-1" th:href="@{/locations/show(location=${location.id})}" th:text="${location.name}"/>
         </span>
     </div>
-    <a class="btn btn-primary mt-5" th:href="@{/locations/create}">Locatie toevoegen</a>
+    <a class="btn btn-primary mt-5" th:href="@{/locations/create}" th:text="#{locations.actions.add}"></a>
 
 </section>
 

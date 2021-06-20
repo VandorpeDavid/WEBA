@@ -77,10 +77,10 @@ public class OrderController extends ApplicationController {
         return ResponseEntity.ok("ok");
     }
 
-    @PostMapping("/cancel")
+    @PostMapping("/reject")
     @PreAuthorize("isOrderAdmin(#order)")
-    public ResponseEntity<String> cancel(@Required Order order) {
-        orderService.cancel(order);
+    public ResponseEntity<String> reject(@Required Order order) {
+        orderService.reject(order);
         return ResponseEntity.ok("ok");
     }
 

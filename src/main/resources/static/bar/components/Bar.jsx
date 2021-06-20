@@ -2,8 +2,8 @@ import React from "react";
 import autoBind from 'react-autobind';
 import Order from "./Order";
 import {CSSTransitionGroup} from 'react-transition-group' // ES6
-
-const completedStates = ['COMPLETED', 'CANCELLED'];
+import { withTranslation } from 'react-i18next';
+const completedStates = ['COMPLETED', 'REJECTED'];
 const completedOrderLogSize = 5;
 
 function deleteOrder(orders, newOrder) {
@@ -120,8 +120,9 @@ class Bar extends React.PureComponent {
     }
 
     render() {
+        const t = this.props.t;
         return <React.Fragment>
-            <h1>Recent afgewerkt door mij</h1>
+            <h1>{t('orders.recentlyFinishedByMe')}</h1>
             <CSSTransitionGroup
                 transitionName="order-list"
                 transitionEnterTimeout={1000}
@@ -132,7 +133,7 @@ class Bar extends React.PureComponent {
                 }
             </CSSTransitionGroup>
 
-            <h1>Onafgewerkt</h1>
+            <h1>{t('orders.unfinished')}</h1>
             <CSSTransitionGroup
                 transitionName="order-list"
                 transitionEnterTimeout={1000}
@@ -146,4 +147,4 @@ class Bar extends React.PureComponent {
     }
 }
 
-export default Bar;
+export default withTranslation()(Bar);

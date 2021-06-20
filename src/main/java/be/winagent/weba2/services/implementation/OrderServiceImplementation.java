@@ -18,7 +18,7 @@ import java.util.*;
 public class OrderServiceImplementation implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderSockets orderSockets;
-    private static final List<OrderStatus> unfinishedStatusses = new ArrayList<>() {{
+    private static final List<OrderStatus> unfinishedStatuses = new ArrayList<>() {{
         add(OrderStatus.ORDERED);
         add(OrderStatus.STARTED);
     }};
@@ -65,9 +65,9 @@ public class OrderServiceImplementation implements OrderService {
     }
 
     @Override
-    public Order cancel(Order order) {
+    public Order reject(Order order) {
         boolean updateQueue = ! order.getStatus().isComplete();
-        order.setStatus(OrderStatus.CANCELLED);
+        order.setStatus(OrderStatus.REJECTED);
         return update(order, updateQueue);
     }
 
@@ -84,20 +84,20 @@ public class OrderServiceImplementation implements OrderService {
 
     @Override
     public List<Order> listUnfinishedOrders(Event event) {
-        List<Order> orders = orderRepository.findAllByEventIdAndStatusIsIn(event.getId(), unfinishedStatusses);
+        List<Order> orders = orderRepository.findAllByEventIdAndStatusIsIn(event.getId(), unfinishedStatuses);
         orders.sort(Comparator.comparing(Order::getCreated));
         return orders;
     }
 
     @Override
     public int getQueuePosition(Order order) {
-        if (!unfinishedStatusses.contains(order.getStatus())) {
+        if (!unfinishedStatuses.contains(order.getStatus())) {
             return -1;
         }
 
         return orderRepository.countAllByEventIdAndStatusIsInAndCreatedIsBefore(
                 order.getEvent().getId(),
-                unfinishedStatusses,
+                unfinishedStatuses,
                 order.getCreated()
         );
     }

@@ -4,6 +4,7 @@ import qs from 'querystring';
 import autoBind from 'react-autobind';
 import { IoIosCheckmark, IoIosClose, IoIosPlay, IoMdRefresh } from "react-icons/io";
 const csrfToken = $("meta[name='_csrf']").attr("content");
+import { withTranslation } from 'react-i18next';
 
 function doPostRequest(url) {
     axios.post(
@@ -19,47 +20,6 @@ function doPostRequest(url) {
     );
 }
 
-class CompleteOrderAction extends React.PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {confirmation: false}
-        autoBind(this);
-    }
-
-
-    completeOrder() {
-        if (this.props.order.status === 'ORDERED') {
-            this.setState({
-                confirmation: true
-            });
-        } else {
-            this.confirmCompleteOrder(this.props.order);
-        }
-    }
-
-    confirmCompleteOrder() {
-        this.props.completeOrder();
-    }
-
-    cancelConfirmation() {
-        this.setState({
-            confirmation: false
-        });
-    }
-
-    render() {
-        if (this.state.confirmation) {
-            return <div>
-                Ben je zeker?
-                <button className={"btn btn-success"} onClick={this.confirmCompleteOrder}>Ja</button>
-                <button className={"btn btn-danger"} onClick={this.cancelConfirmation}>Nee</button>
-            </div>
-        } else {
-            return <button className={"btn btn-success"} onClick={this.completeOrder}>Afgewerkt ✓</button>
-        }
-    }
-}
-
 class OrderActions extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -67,9 +27,9 @@ class OrderActions extends React.PureComponent {
         autoBind(this);
     }
 
-    cancelOrder() {
+    rejectOrder() {
         const order = this.props.order;
-        doPostRequest("/orders/cancel?order=" + order.id);
+        doPostRequest("/orders/reject?order=" + order.id);
         this.props.markAsCompletedByMe(order);
     }
 
@@ -90,13 +50,14 @@ class OrderActions extends React.PureComponent {
     }
 
     render() {
+        const t = this.props.t;
         return <div className={"btn-group btn-group-lg"} role={"group"}>
-            <button className={"btn btn-success"} onClick={this.completeOrder}>Afgewerkt <IoIosCheckmark/></button>
-            <button className={"btn btn-danger"} onClick={this.cancelOrder}>Weigeren <IoIosClose/></button>
-            <button className={"btn btn-primary"} onClick={this.startOrder}>️Beginnen <IoIosPlay/></button>
-            <button className={"btn btn-info"} onClick={this.resetOrder}>Reset <IoMdRefresh/></button>
+            <button className={"btn btn-success"} onClick={this.completeOrder}>{t('orders.actions.complete')} <IoIosCheckmark/></button>
+            <button className={"btn btn-danger"} onClick={this.rejectOrder}>{t('orders.actions.reject')} <IoIosClose/></button>
+            <button className={"btn btn-primary"} onClick={this.startOrder}>{t('orders.actions.start')} <IoIosPlay/></button>
+            <button className={"btn btn-info"} onClick={this.resetOrder}>{t('orders.actions.reset')} <IoMdRefresh/></button>
         </div>;
     }
 }
 
-export default OrderActions;
+export default withTranslation()(OrderActions);

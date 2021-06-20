@@ -10,7 +10,7 @@
             <li class="breadcrumb-item active" aria-current="page">Bar aanmaken</li>
         </ol>
     </nav>
-    <h1 class="pb-2">Evenement aanmaken voor <th:block th:text="${association}"></th:block></h1>
+    <h1 class="pb-2" th:text="#{events.actions.add.long(${association})}"></h1>
     <form
             class="form-horizontal"
             th:method="POST"
@@ -18,8 +18,7 @@
             th:object="${eventForm}"
     >
         <div class="form-group required">
-            <label class="col-sm-2 control-label" for="name">
-                Naam
+            <label class="col-sm-2 control-label" for="name" th:text="#{events.name}">
             </label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" th:field="*{name}" id="name" maxlength="255" required>
@@ -28,8 +27,7 @@
             </div>
         </div>
         <div class="form-group required">
-            <label class="col-sm-2 control-label" for="open">
-                Open
+            <label class="col-sm-2 control-label" for="open" th:text="#{events.open}">
             </label>
             <div class="col-sm-10">
                 <input type="checkbox" class="form-control" th:field="*{open}" id="open">
@@ -38,8 +36,7 @@
         </div>
         <th:block th:if="${currentUser.admin}">
             <div class="form-group required">
-                <label class="col-sm-2 control-label" for="location">
-                    Locatie
+                <label class="col-sm-2 control-label" for="location" th:text="#{events.location}">
                 </label>
                 <div class="col-sm-10">
                     <select class="form-control" th:field="*{locationId}" id="location" maxlength="255" required>
@@ -51,8 +48,7 @@
                 </div>
             </div>
             <div class="form-group required">
-                <label class="col-sm-2 control-label" for="startDate">
-                    Begin
+                <label class="col-sm-2 control-label" for="startDate" th:text="#{events.timeRange.start.date}">
                 </label>
                 <div class="col-sm-10">
                     <input type="date" class="form-control" th:field="*{startDate}" id="startDate">
@@ -60,8 +56,7 @@
                 </div>
             </div>
             <div class="form-group required">
-                <label class="col-sm-2 control-label" for="startTime">
-                    Begin
+                <label class="col-sm-2 control-label" for="startTime" th:text="#{events.timeRange.start.time}">
                 </label>
                 <div class="col-sm-10">
                     <input type="time" class="form-control" th:field="*{startTime}" id="startTime">
@@ -69,8 +64,7 @@
                 </div>
             </div>
             <div class="form-group required">
-                <label class="col-sm-2 control-label" for="endDate">
-                    Einde
+                <label class="col-sm-2 control-label" for="endDate" th:text="#{events.timeRange.end.date}">
                 </label>
                 <div class="col-sm-10">
                     <input type="date" class="form-control" th:field="*{endDate}" id="endDate">
@@ -78,8 +72,7 @@
                 </div>
             </div>
             <div class="form-group required">
-                <label class="col-sm-2 control-label" for="endTime">
-                    Einde
+                <label class="col-sm-2 control-label" for="endTime" th:text="#{events.timeRange.end.time}">
                 </label>
                 <div class="col-sm-10">
                     <input type="time" class="form-control" th:field="*{endTime}" id="endTime">
@@ -90,8 +83,8 @@
 
         <div class="form-group pt-4">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary">
-                    Aanmaken
+                <button type="submit" class="btn btn-primary" th:text="#{common.actions.save}">
+
                 </button>
             </div>
         </div>
