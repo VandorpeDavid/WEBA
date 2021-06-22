@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "VandorpeDavid",
+      "name": "David Vandorpe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11561878?v=4",
+      "profile": "https://github.com/VandorpeDavid",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "WEBA",
+  "projectOwner": "VandorpeDavid",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
