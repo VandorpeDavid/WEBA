@@ -13,6 +13,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "vronsyn",
+      "name": "vronsyn",
+      "avatar_url": "https://avatars.githubusercontent.com/u/15131254?v=4",
+      "profile": "https://github.com/VRonsyn",
+      "contributions": [
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,

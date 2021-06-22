@@ -1,6 +1,6 @@
 # Requirements
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 * Java 11
@@ -25,6 +25,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/VandorpeDavid"><img src="https://avatars.githubusercontent.com/u/11561878?v=4?s=100" width="100px;" alt=""/><br /><sub><b>David Vandorpe</b></sub></a><br /><a href="https://github.com/VandorpeDavid/WEBA/commits?author=VandorpeDavid" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/VRonsyn"><img src="https://avatars.githubusercontent.com/u/15131254?v=4?s=100" width="100px;" alt=""/><br /><sub><b>vronsyn</b></sub></a><br /><a href="#design-vronsyn" title="Design">🎨</a></td>
   </tr>
 </table>
 
