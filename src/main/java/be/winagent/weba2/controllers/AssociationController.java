@@ -64,14 +64,7 @@ public class AssociationController extends ApplicationController {
             return "associations/create";
         }
 
-        Association association;
-        if (user.isAdmin()) {
-            association = adminAssociationConverter.build(associationForm);
-        } else {
-            association = associationConverter.build(associationForm);
-        }
-
-        association = associationService.create(association);
+        Association association = associationService.create(adminAssociationConverter.build(associationForm));
 
         return redirect(association);
     }
