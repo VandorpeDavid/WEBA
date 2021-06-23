@@ -59,12 +59,20 @@ public class AssociationController extends ApplicationController {
 
     @PostMapping("/create")
     @PreAuthorize("isAdmin()")
-    public String create(@Valid AssociationForm associationForm, BindingResult bindingResult) {
+    public String create(@Valid AssociationForm associationForm, BindingResult bindingResult, @ModelAttribute(name = "currentUser") User user) {
         if (bindingResult.hasErrors()) {
             return "associations/create";
         }
 
-        Association association = associationService.create(associationConverter.build(associationForm));
+        Association association;
+        if (user.isAdmin()) {
+            association = adminAssociationConverter.build(associationForm);
+        } else {
+            association = associationConverter.build(associationForm);
+        }
+
+        association = associationService.create(association);
+
         return redirect(association);
     }
 
@@ -100,7 +108,7 @@ public class AssociationController extends ApplicationController {
     public String addAdmin(RedirectAttributes model, @Required Association association, @RequestParam String username) {
         Optional<User> userOptional = userService.findByUsername(username);
 
-        if(userOptional.isEmpty()) {
+        if (userOptional.isEmpty()) {
             model.addFlashAttribute("dangerAlert", String.format("Gebruikersnaam '%s' niet gevonden.", username));
             return redirect(association);
         }
