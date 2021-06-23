@@ -64,7 +64,8 @@ public class AssociationController extends ApplicationController {
             return "associations/create";
         }
 
-        Association association = associationService.create(associationConverter.build(associationForm));
+        Association association = associationService.create(adminAssociationConverter.build(associationForm));
+
         return redirect(association);
     }
 
@@ -100,7 +101,7 @@ public class AssociationController extends ApplicationController {
     public String addAdmin(RedirectAttributes model, @Required Association association, @RequestParam String username) {
         Optional<User> userOptional = userService.findByUsername(username);
 
-        if(userOptional.isEmpty()) {
+        if (userOptional.isEmpty()) {
             model.addFlashAttribute("dangerAlert", String.format("Gebruikersnaam '%s' niet gevonden.", username));
             return redirect(association);
         }
