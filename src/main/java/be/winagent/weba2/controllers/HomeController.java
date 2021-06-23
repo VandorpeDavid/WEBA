@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,5 +39,12 @@ public class HomeController extends ApplicationController {
 
         model.addAttribute("adminAssociations", adminAssociations);
         return "home";
+    }
+
+    @GetMapping("/info")
+    @Authenticated
+    public String info(@RequestParam(required = false) String lang, @ModelAttribute(name = "currentUser") User currentUser) {
+        if (lang != null && lang.equals("en")) return "info_en";
+        return "info_nl";
     }
 }

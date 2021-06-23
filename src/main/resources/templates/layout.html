@@ -48,11 +48,17 @@
             Studententuin
         </th:block>
     </a>
-    <ul class="nav navbar-nav navbar-right">
-        <li th:unless="${#locale.language == 'en'}"><a th:href="${@changeLocaleUrl.apply('en')}" class="as-text">English</a></li>
-        <li th:unless="${#locale.language == 'nl'}"><a th:href="${@changeLocaleUrl.apply('nl')}" class="as-text">Nederlands</a></li>
-        <li><a href="/logout" class="as-text">Logout</a></li>
-    </ul>
+    <div class="nav navbar-nav navbar-right d-flex flex-row">
+        <ul class="my-auto mr-2">
+            <li th:unless="${#locale.language == 'en'}"><a th:href="${@changeLocaleUrl.apply('en')}"
+                                                           class="as-text">English</a>
+            </li>
+            <li th:unless="${#locale.language == 'nl'}"><a th:href="${@changeLocaleUrl.apply('nl')}"
+                                                           class="as-text">Nederlands</a>
+            </li>
+        </ul>
+        <a href="/logout" class="btn btn-themed">Logout</a>
+    </div>
 </nav>
 <section class="container" th:if="${ infoAlert != null || dangerAlert != null || successAlert != null}">
 

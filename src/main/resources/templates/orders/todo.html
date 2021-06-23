@@ -7,7 +7,7 @@
     <h1 class="pb-2" th:text="#{events.actions.viewUnfinishedOrders.long(${event.name})}"></th:block>
     </h1>
 
-    <div id="bar-orders" th:data-id="${event.id}" th:data-locale="${#locale.language}" th:text="#{common.react.javascriptWarning}"></div>
+    <div id="bar-orders" class="container" th:data-id="${event.id}" th:data-locale="${#locale.language}" th:text="#{common.react.javascriptWarning}"></div>
     <script src="/dist/bar-bundle.js"></script>
 </section>
 </body>

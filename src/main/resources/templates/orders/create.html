@@ -14,29 +14,38 @@
             th:action="@{/orders/create(table=${table.id})}"
             th:object="${orderForm}"
     >
-        <div class="order-form-item-grid">
-            <th:block th:each="item, iter : ${items}">
-                <div class="card order-item">
-                    <h4 class="order-item-name" th:text="${item.name}"></h4>
-                    <div class="order-item-photo">
-                        <img th:src="${item.photo}"/>
-                    </div>
-
-                    <h3 class="order-item-price" th:text="${@money.apply(item.price)}"></h3>
-                    <input type="hidden" th:field="*{items[__${iter.index}__].itemId}"/>
-                    <input class="order-item-count" type="number" min="0" th:field="*{items[__${iter.index}__].amount}" th:data-price="${item.price}"/>
-                    <button type="button" class="inc-dec-bttn decrement-button">-</button>
-                    <button type="button" class="inc-dec-bttn increment-button">+</button>
-                </div>
-            </th:block>
-        </div>
-
         <div class="form-group pt-4">
-            <div class="">
+            <div class="order-header">
                 <h4 th:utext="#{orders.total.preview}"></h4>
-                <button type="submit" class="btn btn-primary" th:text="#{orders.actions.create}">
+                <button type="submit" class="btn btn-themed" th:text="#{orders.actions.create}">
                 </button>
             </div>
+        </div>
+
+        <div class="order-form-item-grid">
+            <th:block th:each="item, iter : ${items}">
+                <div class="order-item shadow">
+                    <div class="order-item--image">
+                        <div class="order-item-photo">
+                            <img th:src="${item.photo}"/>
+                        </div>
+
+                    </div>
+                    <div class="order-item--details">
+                        <h4 class="title" th:text="${item.name}"></h4>
+                        <h3 class="subtitle" th:text="${@money.apply(item.price)}"></h3>
+                    </div>
+                    <div class="order-item--form">
+                        <div class="order-item--buttons">
+                            <button type="button" class="inc-dec-bttn decrement-button">-</button>
+                            <input type="hidden" th:field="*{items[__${iter.index}__].itemId}"/>
+                            <input class="order-item-count" type="number" min="0"
+                                   th:field="*{items[__${iter.index}__].amount}" th:data-price="${item.price}"/>
+                            <button type="button" class="inc-dec-bttn increment-button">+</button>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
         </div>
     </form>
 </section>
