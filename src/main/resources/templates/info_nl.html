@@ -1,0 +1,201 @@
+<html layout:decorate="~{layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <style>
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+      width: 50%;
+    }
+    .tab button:hover, .tab button.active {
+      color: white;
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+<section layout:fragment="content">
+
+
+  <div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'STUDENTENTUIN')" id="defaultOpen">Studententuin</button>
+    <button class="tablinks" onclick="openTab(event, 'BESTELSYSTEEM')">Bestelsysteem</button>
+  </div>
+
+
+  <!-- sectie 1 'STUDENTENTUIN' -->
+  <div id="STUDENTENTUIN" class="tabcontent">
+
+    <h2>De Studententuin</h2>
+
+    <h4>Algemeen</h4>
+
+    <b>Reservaties</b><br>
+    <p>
+      De Studententuin kan gereserveerd worden via het
+      <a href="https://dsa.ugent.be/" target="_blank">DSA Controlepaneel</a>.
+      Meer informatie over de reservaties vind je daar ook terug.
+    </p>
+
+    <br><b>Stocktellingen</b><br>
+    <p>
+      De DSA zal na elke activiteit (meestal in de ochtend na de activiteit) een
+      stocktelling uitvoeren. Hetgeen de vereniging verbruikt heeft op haar activiteit
+      zal dan gefactureerd worden naar de vereniging. Dit kan enkele weken duren
+      vooraleer je deze ontvangt.
+    </p>
+    <p>
+      Bij de stocktelling wordt er ook gekeken of het terrein proper werd achtergelaten
+      door de vereniging, of er geen schade is aan de infrastructuur etc.
+    </p>
+
+    <h4>Maatregelen</h4>
+    <p>
+      In de Studententuin gelden een reeks maatregelen die hieronder even oplijsten. Elke
+      activiteit die doorgaat in de Studententuin moet steeds conform deze maatregelen zijn.
+    </p>
+    <ol>
+      <li>Geen versterkte muziek (wel microfooninstallatie en boxen voor bv. quiz).</li>
+      <li>Geen verkoop van sterke dranken.</li>
+      <li>
+        Om 23 uur is de laatste call voor een drankje. Om 23 uur 30 eindigt elke activiteit
+        onherroepelijk en verlaat iedereen het terrein. Enkel de organiserende bestuursleden (en praesidiumleden)
+        van de vereniging kunnen nog afrondend opruimen.
+      </li>
+      <li>Het terrein wordt steeds proper achtergelaten.</li>
+      <li>
+        De vereniging wordt verwacht de geldende Corona-maatregelen ten allen tijden te respecteren
+        en te volgen, alsook het draaiboek steeds correct na te leven.
+      </li>
+      <li>
+        Indien regels worden geschonden, kan de toegang tot het terrein verboden worden
+        voor een vereniging.
+      </li>
+      <li>
+        Na 22 uur mag er geen geluidsoverlast zijn. Klachten hieromtrent wegen zwaar door
+        en kunnen de toekomst van de Studententuin hypothekeren.
+      </li>
+    </ol>
+    <p>
+      Opgelet, voor bepaalde activiteiten kunnen er extra maatregelen van kracht zijn. Raadpleeg
+      steeds de DSA website of neem contact op met uw Konvent indien er vragen of problemen zijn. Denk ondermeer bij
+      cantussen aan het cantusprotocol en bij het organiseren van een zomerbar aan het horecaprotocol.
+    </p>
+
+
+    <h4>Voortuin</h4>
+
+    <br><b>Algemene info</b><br>
+    <ul>
+      <li>Ongeveer 800m² aan oppervlakte</li>
+      <li>Ruimte voor maximum 160 personen (ongeveer 40 tafels)</li>
+      <li>Gemiddeld 65 meter wandelafstand naar de toiletcontainer</li>
+      <li>Reserveerbaar voor verenigingen van maandag tot en met donderdag en op zaterdag</li>
+    </ul>
+
+    <br><b>Faciliteiten</b><br>
+    <p>
+      De Voortuin beschikt over een uitgeruste barcontainer. De verenigingen mogen hier
+      gebruik van maken. We delen deze echter met Cabane Banane en vragen dus deze steeds
+      proper achter te laten.
+    </p>
+
+    <br><b>Drankenstock</b><br>
+    <p>
+      Volgende zaken zijn beschikbaar in de drankenstock van de voortuin en
+      kunnen door de verenigingen geserveerd worden:
+    </p>
+    <ul>
+      <li>...</li>
+    </ul>
+    <p>Een vereniging kan/mag natuurlijk altijd ook zelf drank en/of versnaperingen voorzien.</p>
+
+
+    <h4>Achtertuin</h4>
+
+    <br><b>Algemene info</b><br>
+    <ul>
+      <li>Ongeveer 490m² aan oppervlakte</li>
+      <li>Ruimte voor maximum 80 personen (ongeveer 20 tafels)</li>
+      <li>Gemiddeld 150 meter wandelafstand naar de toiletcontainer</li>
+      <li>Reserveerbaar elke dag van de week</li>
+      <li>Deze ruimte kan gebruikt worden om te cantussen.</li>
+    </ul>
+
+    <br><b>Faciliteiten</b><br>
+    <p>
+      De Achtertuin heeft geen ingerichte barcontainer maar wel een kleinere container
+      met de drankenstock in. Ook wordt er een mobiele tap voorzien waar vaten op aangesloten
+      kunnen worden.
+    </p>
+
+    <br><b>Drankenstock</b><br>
+    <p>
+      Volgende zaken zijn beschikbaar in de drankenstock van de achtertuin en
+      kunnen door de verenigingen geserveerd worden:
+    </p>
+    <ul>
+      <li></li>
+    </ul>
+    <p>Een vereniging kan/mag natuurlijk altijd ook zelf drank en/of versnaperingen voorzien.</p>
+
+  </div>
+
+
+  <!-- sectie 2 'BESTELSYSTEEM' -->
+  <div id="BESTELSYSTEEM" class="tabcontent">
+
+    <h2>Het bestelsysteem</h2>
+
+    <h4>...</h4>
+    <p>...</p>
+
+    <h4>Betalingen</h4>
+    <p>
+      Deze applicatie ondersteunt momenteel nog <b>geen online betaalmethoden</b>. Er
+      wordt wel bekeken hoe we dit in de toekomst nog kunnen toevoegen. Voorlopig is de
+      vereniging dus zelf verantwoordelijk voor de betalingen. Men kan hiervoor gebruik
+      maken van een bancontact toestel of werken met een Payconiq qr code. Cash betalingen
+      worden wegens Corona afgeraden.
+    </p>
+
+    <h4>Problemen of vragen</h4>
+    <p>
+      Bij problemen of vragen kan je steeds terecht bij de DSA op het mailadres <a href="dsa@ugent.be">dsa@ugent.be</a>.
+    </p>
+
+  </div>
+
+</section>
+
+<script>
+  function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  document.getElementById("defaultOpen").click();
+</script>
+
+</body>
+</html>
