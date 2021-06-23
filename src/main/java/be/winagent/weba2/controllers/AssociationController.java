@@ -59,7 +59,7 @@ public class AssociationController extends ApplicationController {
 
     @PostMapping("/create")
     @PreAuthorize("isAdmin()")
-    public String create(@Valid AssociationForm associationForm, BindingResult bindingResult, @ModelAttribute(name = "currentUser") User user) {
+    public String create(@Valid AssociationForm associationForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "associations/create";
         }
