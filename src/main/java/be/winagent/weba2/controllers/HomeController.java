@@ -43,7 +43,7 @@ public class HomeController extends ApplicationController {
 
     @GetMapping("/info")
     @Authenticated
-    public String info(Locale loc, @ModelAttribute(name = "currentUser") User currentUser) {
+    public String info(Locale loc) {
         if (loc != null && loc.equals(Locale.ENGLISH)) return "info_en";
         return "info_nl";
     }
