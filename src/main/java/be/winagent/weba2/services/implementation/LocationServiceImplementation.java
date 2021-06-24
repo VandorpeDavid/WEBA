@@ -8,6 +8,7 @@ import be.winagent.weba2.domain.repositories.TableRepository;
 import be.winagent.weba2.services.LocationService;
 import be.winagent.weba2.services.TableService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class LocationServiceImplementation implements LocationService {
 
     @Override
     public List<Location> all() {
-        return locationRepository.findAll();
+        return locationRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     @Override

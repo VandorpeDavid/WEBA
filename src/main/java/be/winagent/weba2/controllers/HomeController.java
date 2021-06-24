@@ -10,9 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Controller
@@ -43,8 +43,8 @@ public class HomeController extends ApplicationController {
 
     @GetMapping("/info")
     @Authenticated
-    public String info(@RequestParam(required = false) String lang, @ModelAttribute(name = "currentUser") User currentUser) {
-        if (lang != null && lang.equals("en")) return "info_en";
+    public String info(Locale loc, @ModelAttribute(name = "currentUser") User currentUser) {
+        if (loc != null && loc.equals(Locale.ENGLISH)) return "info_en";
         return "info_nl";
     }
 }
