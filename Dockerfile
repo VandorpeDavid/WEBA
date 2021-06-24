@@ -13,4 +13,4 @@ FROM openjdk:11
 ARG DEPENDENCY=/workspace/app
 ARG SPRING_CONFIG_LOCATION=/app
 COPY --from=build ${DEPENDENCY}/compiled.jar /app/compiled.jar
-CMD ["java", "-jar", "-Dspring.profiles.active=production", "/app/compiled.jar"]
+CMD ["java", "-jar", "-Dserver.forward-headers-strategy=native", "-Dspring.profiles.active=production", "/app/compiled.jar"]
