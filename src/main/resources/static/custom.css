@@ -1,3 +1,21 @@
+* {
+    /* CSS HEX */
+    --primary-900: #07162cff;
+    --primary-800: #0d2d59ff;
+    --primary-700: #144385ff;
+    --primary-600: #1b59b1ff;
+    --primary-500: #1e64c8ff;
+    --primary-400: #2170deff;
+    --primary-300: #4d8de5ff;
+    --primary-200: #79a9ecff;
+    --primary-100: #a6c6f2ff;
+    --secondary: #FFD200;
+    --almost-white: #E9F0FC;
+    --almost-white-active: #d3e2f8ff;
+    --almost-black: #030B16;
+    --almost-black-active: #07162cff;
+}
+
 .hint {
     color: gray;
 }
@@ -42,25 +60,43 @@ a.as-text, a.as-text:hover, a.as-text:focus {
 .order-form-item-grid {
     display: grid;
     grid-gap: 2rem;
-    grid-template-columns: repeat(auto-fill, minmax(auto, 300px));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     place-content: center;
 }
 
 .order-item {
-    display: grid;
-    grid-template-columns: repeat(2, calc(50% - .5rem));
-    grid-template-rows: repeat(4, auto);
+    display: flex;
+    flex-direction: column;
     padding: 1rem;
-    grid-gap: 1rem;
+    border-radius: 10px;
 }
 
-.order-item-name {
-    grid-area: 1/1/2/2;
+.order-item--details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
+.order-item--details > .title {
+    color: var(--primary-700);
+    font-size: 1rem;
+}
 
-.order-item-photo {
-    grid-area: 1 / 2 / 3 / 3;
+.order-item--details > .subtitle {
+    color: var(--primary-900);
+    font-weight: 700;
+    font-size: 2rem;
+    margin: 0 auto;
+}
+
+.order-item--image {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+    border-bottom: var(--almost-white) solid 1px;
+    margin-bottom: 0.5rem;
 }
 
 .order-item-photo > img {
@@ -68,39 +104,87 @@ a.as-text, a.as-text:hover, a.as-text:focus {
     max-width: 100%;
 }
 
-.order-item-price {
-    grid-area: 2/1/3/2;
+
+.order-item--form .order-item-count {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    font-size: 2rem;
+    width: 100%;
+    text-align: center;
 }
 
-.order-item-count {
-    grid-area: 3 / 1 / 4 / 3;
-    height: 3rem;
+
+.order-item--form > .order-item--buttons {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    align-items: center;
 }
 
 .inc-dec-bttn {
-    background: #ddd;
+    background: var(--primary-500);
     box-shadow: none;
     border: none;
     font-size: 2rem;
     border-radius: .5rem;
+    width: 100%;
+    color: var(--almost-white);
 }
 
-.increment-button {
-    grid-area: 4/2/5/3;
+.inc-dec-bttn:active {
+    background: var(--almost-white-active);
 }
 
-.decrement-button {
-    grid-area: 4/1/5/2;
+.inc-dec-bttn:disabled {
+    filter: opacity(0.5);
+    cursor: not-allowed;
+}
+
+.inc-dec-bttn.decrement-button {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.inc-dec-bttn.increment-button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.order-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid lightgray;
+}
+
+.order-header > .btn {
+    font-size: 1.3rem;
+    background-color: var(--primary-500);
+}
+
+.order-header > h4 {
+    margin-bottom: 0;
 }
 
 .todo-order {
     padding: 2rem;
+    width: 100%;
+}
+
+.btn-themed {
+    background-color: var(--primary-500);
+    border-color: var(--primary-500);
+    color: #fff;
 }
 
 /* Constant */
 .collapsible-wrapper {
     display: flex;
     overflow: hidden;
+    margin-bottom: 2rem;
 }
 
 .collapsible-wrapper:after {
@@ -111,6 +195,7 @@ a.as-text, a.as-text:hover, a.as-text:focus {
 .collapsible-wrapper.order-list-enter-active:after, .collapsible-wrapper.order-list-leave:after {
     height: 50px;
     max-height: 0;
+    margin-bottom: 2rem;
 }
 
 .collapsible.order-list-enter.order-list-enter-active > .collapsible, .collapsible-wrapper.order-list-leave > .collapsible {
@@ -164,4 +249,13 @@ a.as-text, a.as-text:hover, a.as-text:focus {
 
 .react-order.status-STARTED, .order-index .status-STARTED {
     border: 3px solid blue;
+}
+
+ul.disc-list li {
+    list-style: disc;
+}
+
+.tab-pane div + div {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }

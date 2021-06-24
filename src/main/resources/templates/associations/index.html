@@ -7,12 +7,20 @@
     <h1 th:text="#{associations}"></h1>
     <div class="list-group pt-3 pb-3 pl-5">
         <span th:each="association : ${ associations }">
-            <a class="col-sm-4 btn btn-primary list-group-item list-group-item-action m-1" th:href="@{/associations/show(association=${association.abbreviation})}" th:text="${association.name}"/>
+            <a class="col-sm-4 btn btn-primary list-group-item list-group-item-action m-1"
+               th:href="@{/associations/show(association=${association.abbreviation})}" th:text="${association.name}"/>
         </span>
     </div>
     <a class="btn btn-primary mt-5" th:href="@{/associations/create}" th:text="#{associations.actions.add}"></a>
     <a class="btn btn-info mt-5" th:href="@{/admins}" th:text="#{admins}"></a>
     <a class="btn btn-info mt-5" th:href="@{/locations}" th:text="#{locations}"></a>
+    <div class="mt-4">
+        <h2 th:text="#{information.general}"></h2>
+        <p>
+            <span  th:text="#{information.description}"></span>
+            <a class="mt-5" th:href="@{/info}" th:text="#{information.here}"></a>.
+        </p>
+    </div>
 </section>
 
 </body>

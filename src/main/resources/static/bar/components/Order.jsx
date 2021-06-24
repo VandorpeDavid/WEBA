@@ -9,7 +9,7 @@ export default ({markAsCompletedByMe, order}) => {
         <div className={'card todo-order collapsible react-order status-' + order.status}>
             <h3>{t('orders.table', {table: order.table})}</h3>
             <h4>{t('orders.status', {status: t('orders.states.' + order.status)})}</h4>
-            <table className={"table table-striped"}>
+            <table className={"table table-striped table-sm"}>
                 <thead>
                 <tr>
                     <th scope={"col"}>{t('orders.name')}</th>

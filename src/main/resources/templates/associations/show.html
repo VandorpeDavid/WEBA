@@ -50,6 +50,13 @@
             </button>
         </div>
     </form>
+    <div class="mt-4">
+        <h2 th:text="#{information.general}"></h2>
+        <p>
+            <span  th:text="#{information.description}"></span>
+            <a class="mt-5" th:href="@{/info}" th:text="#{information.here}"></a>.
+        </p>
+    </div>
 </section>
 </body>
 </html>

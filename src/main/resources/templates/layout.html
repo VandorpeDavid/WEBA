@@ -13,7 +13,7 @@
     <link rel="manifest" href="/favicons/site.webmanifest">
     <link rel="mask-icon" href="/favicons/favicon.svg" color="#5bbad5">
     <link rel="shortcut icon" href="/favicons/favicon.ico">
-    <title>WEBA</title>
+    <title>Studententuin</title>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -44,15 +44,21 @@
             <th:block th:text="${activeAssociation.abbreviation}"/>
         </th:block>
         <th:block th:unless="${activeAssociation != null}">
-            <img src="https://wina-gent.be/assets/wina-logo-37db21ca07defda43d31f648379eee55c1e6eb5991ea9d8adf466355ede939dd.svg"/>
-            WiNA Gent
+            <img src="https://dsa.ugent.be/images/logo_ugent_nl.svg"/>
+            Studententuin
         </th:block>
     </a>
-    <ul class="nav navbar-nav navbar-right">
-        <li th:unless="${#locale.language == 'en'}"><a th:href="${@changeLocaleUrl.apply('en')}" class="as-text">English</a></li>
-        <li th:unless="${#locale.language == 'nl'}"><a th:href="${@changeLocaleUrl.apply('nl')}" class="as-text">Nederlands</a></li>
-        <li><a href="/logout" class="as-text">Logout</a></li>
-    </ul>
+    <div class="nav navbar-nav navbar-right d-flex flex-row">
+        <ul class="my-auto mr-2">
+            <li th:unless="${#locale.language == 'en'}"><a th:href="${@changeLocaleUrl.apply('en')}"
+                                                           class="as-text">English</a>
+            </li>
+            <li th:unless="${#locale.language == 'nl'}"><a th:href="${@changeLocaleUrl.apply('nl')}"
+                                                           class="as-text">Nederlands</a>
+            </li>
+        </ul>
+        <a href="/logout" class="btn btn-themed">Logout</a>
+    </div>
 </nav>
 <section class="container" th:if="${ infoAlert != null || dangerAlert != null || successAlert != null}">
 
@@ -96,7 +102,7 @@
 <footer>
     <div class="footer fixed-bottom bg-light p-3">
         <div class="container">
-            <p class="text-center">&copy <a href="http://wina-gent.be">WiNA Gent</a> 2020</p>
+            <p class="text-center">&copy <a href="http://wina-gent.be">WiNA Gent vzw</a> 2021</p>
         </div>
     </div>
 </footer>

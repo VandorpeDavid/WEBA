@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Controller
@@ -38,5 +39,12 @@ public class HomeController extends ApplicationController {
 
         model.addAttribute("adminAssociations", adminAssociations);
         return "home";
+    }
+
+    @GetMapping("/info")
+    @Authenticated
+    public String info(Locale loc) {
+        if (loc != null && loc.equals(Locale.ENGLISH)) return "info_en";
+        return "info_nl";
     }
 }

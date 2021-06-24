@@ -2,7 +2,8 @@ import React from "react";
 import autoBind from 'react-autobind';
 import Order from "./Order";
 import {CSSTransitionGroup} from 'react-transition-group' // ES6
-import { withTranslation } from 'react-i18next';
+import {withTranslation} from 'react-i18next';
+
 const completedStates = ['COMPLETED', 'REJECTED'];
 const completedOrderLogSize = 5;
 
@@ -122,27 +123,31 @@ class Bar extends React.PureComponent {
     render() {
         const t = this.props.t;
         return <React.Fragment>
-            <h1>{t('orders.recentlyFinishedByMe')}</h1>
-            <CSSTransitionGroup
-                transitionName="order-list"
-                transitionEnterTimeout={1000}
-                transitionLeaveTimeout={1000}>
-                {
-                    this.state.completedOrders.map((order) => <Order order={order} key={order.id} completed={true}
-                                                                     markAsCompletedByMe={this.markAsCompletedByMe}/>)
-                }
-            </CSSTransitionGroup>
-
-            <h1>{t('orders.unfinished')}</h1>
-            <CSSTransitionGroup
-                transitionName="order-list"
-                transitionEnterTimeout={1000}
-                transitionLeaveTimeout={1000}>
-                {
-                    this.state.unfinishedOrders.map((order) => <Order order={order} key={order.id}
-                                                                      markAsCompletedByMe={this.markAsCompletedByMe}/>)
-                }
-            </CSSTransitionGroup>
+            <div className="col d-flex flex-column">
+                <h1>{t('orders.unfinished')}</h1>
+                <CSSTransitionGroup
+                    transitionName="order-list"
+                    transitionEnterTimeout={1000}
+                    transitionLeaveTimeout={1000}>
+                    {
+                        this.state.unfinishedOrders.map((order) => <Order order={order} key={order.id}
+                                                                          markAsCompletedByMe={this.markAsCompletedByMe}/>)
+                    }
+                </CSSTransitionGroup>
+            </div>
+            <div className="col d-flex flex-column">
+                <h1>{t('orders.recentlyFinishedByMe')}</h1>
+                <CSSTransitionGroup
+                    transitionName="order-list"
+                    transitionEnterTimeout={1000}
+                    transitionLeaveTimeout={1000}>
+                    {
+                        this.state.completedOrders.map((order) => <Order order={order} key={order.id}
+                                                                         completed={true}
+                                                                         markAsCompletedByMe={this.markAsCompletedByMe}/>)
+                    }
+                </CSSTransitionGroup>
+            </div>
         </React.Fragment>;
     }
 }

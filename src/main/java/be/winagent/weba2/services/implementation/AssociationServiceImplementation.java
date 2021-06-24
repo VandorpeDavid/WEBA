@@ -6,6 +6,7 @@ import be.winagent.weba2.domain.repositories.AssociationRepository;
 import be.winagent.weba2.services.AssociationService;
 import be.winagent.weba2.services.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class AssociationServiceImplementation implements AssociationService {
 
     @Override
     public List<Association> all() {
-        return associationRepository.findAll();
+        return associationRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     @Override

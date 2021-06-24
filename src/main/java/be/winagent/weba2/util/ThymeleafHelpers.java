@@ -25,7 +25,7 @@ public class ThymeleafHelpers {
 
     @Bean
     public Function<Integer, String> money() {
-        return (amount) -> String.format("€ %.2f", amount / 100.0);
+        return (amount) -> String.format("€%.2f", amount / 100.0);
     }
 
     @Bean
