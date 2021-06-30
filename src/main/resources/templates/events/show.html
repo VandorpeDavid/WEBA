@@ -24,6 +24,9 @@
            th:href="@{/events/qrcodes(event=${event.id})}" th:text="#{locations.actions.printQrCodes}"></a>
         <a class="btn-primary list-group-item list-group-item-action m-1"
            th:href="@{/orders(event=${event.id})}" th:text="#{locations.actions.viewOrderList}"></a>
+        <a class="btn-primary list-group-item list-group-item-action m-1"
+           th:href="@{/events/orderedItems(event=${event.id})}" th:text="#{events.actions.viewOrderedItems}"></a>
+
     </div>
     <h2 th:text="#{common.info}"></h2>
     <dl>

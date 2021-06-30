@@ -16,12 +16,18 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/events")
@@ -96,6 +102,33 @@ public class EventController extends ApplicationController {
         model.addAttribute("eventForm", formConverter.reverseBuild(event));
         setActiveAssociation(model, event.getAssociation());
         return "events/edit";
+    }
+
+    @GetMapping("/orderedItems")
+    @PreAuthorize("isEventAdmin(#event)")
+    public String orderedItems(Model model, @Required Event event) {
+        setActiveAssociation(model, event.getAssociation());
+        Map<String, Map<Integer, Integer>> items = event.getOrders().stream()
+                .map(Order::getItems)
+                .flatMap(List::stream)
+                .collect(
+                        Collectors.groupingBy(
+                                OrderItem::getName,
+                                Collectors.groupingBy(
+                                        OrderItem::getPrice,
+                                        Collectors.summingInt(
+                                                OrderItem::getAmount
+
+                                        )
+                                )
+                        )
+                );
+
+        model.addAttribute("itemsByNameAndPrice", items);
+
+        event.getTables().sort(Comparator.comparing(Table::getName));
+        event.getItems().sort(Comparator.comparing(Item::getName));
+        return "events/orderedItems";
     }
 
     @PostMapping("/edit")

@@ -1,0 +1,46 @@
+<html layout:decorate="~{layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a
+                    th:href="@{/associations/show(association=${event.association.abbreviation})}"
+                    th:text="${event.association.name}"/></li>
+            <li class="breadcrumb-item"><a th:href="@{/events/show(event=${event.id})}" th:text="${event.name}"/>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page" th:text="#{events.orderItems}"></li>
+        </ol>
+    </nav>
+    <h1 class="pb-2" th:text="#{events.orderItems.long(${event.name})}"></th:block>
+    </h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th th:text="#{events.items.name}">
+            </th>
+            <th th:text="#{events.items.price}">
+            </th>
+            <th th:text="#{events.orderItems.amount}">
+            </th>
+            <th th:text="#{events.orderItems.itemTotal}">
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="itemsByPrice : ${itemsByNameAndPrice}">
+            <tr th:each="amountEntry : ${itemsByPrice.value}">
+                <td th:text="${itemsByPrice.key}"></td>
+                <td th:text="${@money.apply(amountEntry.key)}"></td>
+                <td th:text="${amountEntry.value}"></td>
+                <td th:text="${@money.apply(amountEntry.key * amountEntry.value)}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</section>
+
+</body>
+</html>

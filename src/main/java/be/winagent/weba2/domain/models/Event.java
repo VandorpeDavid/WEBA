@@ -41,6 +41,9 @@ public class Event {
     @OneToMany(mappedBy = "event")
     private List<Item> items = new ArrayList<>();
 
+    @OneToMany(mappedBy = "event")
+    private List<Order> orders = new ArrayList<>();
+
     @CreationTimestamp
     private ZonedDateTime created;
 
