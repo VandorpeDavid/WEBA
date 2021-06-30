@@ -12,7 +12,6 @@ import java.util.UUID;
 
 public interface OrderRepository extends CrudRepository<Order, UUID> {
     Page<Order> findAllByEventIdOrderByCreated(UUID eventId, Pageable pageable);
-
     List<Order> findAllByEventIdAndStatusIsIn(UUID eventId, Iterable<OrderStatus> statuses);
 
     int countAllByEventIdAndStatusIsInAndCreatedIsBefore(UUID eventId, Iterable<OrderStatus> statuses, ZonedDateTime created);
