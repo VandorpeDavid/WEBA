@@ -19,9 +19,9 @@
         </th:block>
     </h1>
     <a th:href="@{/locations/events(past=${!past}, location=${location.id})}">
-        <th:block th:if="${past}" th:text="#{locations.events.past}"/>
+        <th:block th:if="${past}" th:text="#{locations.events.future}"/>
         </th:block>
-        <th:block th:unless="${past}" th:text="#{locations.events.future}"/>
+        <th:block th:unless="${past}" th:text="#{locations.events.past}"/>
         </th:block>
     </a>
 
