@@ -109,6 +109,7 @@ public class EventController extends ApplicationController {
     public String orderedItems(Model model, @Required Event event) {
         setActiveAssociation(model, event.getAssociation());
         Map<String, Map<Integer, Integer>> items = event.getOrders().stream()
+                .filter((order) -> order.getStatus().equals(OrderStatus.COMPLETED))
                 .map(Order::getItems)
                 .flatMap(List::stream)
                 .collect(
