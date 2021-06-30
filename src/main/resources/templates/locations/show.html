@@ -23,6 +23,8 @@
             <div th:text="${table.name}"></div>
             <a th:href="@{/orders/create(table=${table.id})}" th:text="#{orders.actions.create}">
             </a>
+            <a th:if="${currentUser.admin}" th:href="@{/tables/edit(table=${table.id})}" th:text="#{tables.actions.edit}">
+            </a>
         </li>
     </ul>
     <a th:if="${currentUser.admin}" class="btn btn-primary mt-5" th:href="@{/tables/create(location=${location.id})}" th:text="#{locations.tables.actions.create}">

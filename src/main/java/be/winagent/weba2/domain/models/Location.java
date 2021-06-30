@@ -18,6 +18,7 @@ public class Location {
     private UUID id;
 
     @OneToMany(mappedBy = "location", orphanRemoval = true)
+    @OrderBy("name")
     private List<Table> tables = new ArrayList<>();
 
     @NotEmpty
