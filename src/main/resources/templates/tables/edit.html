@@ -7,8 +7,8 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a th:href="@{/locations/}" th:text="#{locations}"></a></li>
-            <li class="breadcrumb-item"><a th:href="@{/locations/show(location=${location.id})}"
-                                           th:text="${location.name}"/></li>
+            <li class="breadcrumb-item"><a th:href="@{/locations/show(location=${table.location.id})}"
+                                           th:text="${table.location.name}"/></li>
             <li class="breadcrumb-item active" aria-current="page" th:text="#{tables.actions.edit}"></li>
         </ol>
     </nav>
