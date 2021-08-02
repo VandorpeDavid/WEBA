@@ -1,11 +1,3 @@
-export interface Bar {
-
-}
-
-export interface Table {
-
-}
-
 export interface OrderItem {
     name: string;
     amount: number;
@@ -17,6 +9,6 @@ export interface Order {
     completedByMe: boolean;
     created: Date;
     status: string;
-    table: Table;
+    table: string;
     items: OrderItem[];
 }
