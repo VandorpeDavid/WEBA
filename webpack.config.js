@@ -1,7 +1,7 @@
 var path = require('path');
 
 module.exports = {
-    entry:  './src/main/resources/static/bar/app.js',
+    entry:  './src/main/resources/static/bar/app.tsx',
     devtool: 'sourcemaps',
     cache: true,
     mode: 'development',
@@ -10,7 +10,7 @@ module.exports = {
         filename: './src/main/resources/static/dist/bar-bundle.js'
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.ts', '.tsx', '.js']
     },
     module: {
         rules: [
@@ -20,7 +20,7 @@ module.exports = {
                 use: [{
                     loader: 'babel-loader',
                     options: {
-                        presets: ["@babel/preset-env", "@babel/preset-react"]
+                        presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"]
                     }
                 }]
             }
