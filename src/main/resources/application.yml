@@ -6,7 +6,7 @@ security:
     service:
       paths:
         logout: /logout
-      base-url: https://studententuin.ugent.be
+      base-url: http://local.todo.ugent.be:8080
 application:
   base-url: https://studententuin.ugent.be
 
@@ -22,6 +22,6 @@ spring:
               action: create
               create-target: create.sql
   datasource:
-    url: jdbc:postgresql://database/weba
+    url: jdbc:postgresql://localhost/weba
     username: weba
     password: weba
