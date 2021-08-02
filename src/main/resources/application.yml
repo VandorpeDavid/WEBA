@@ -6,7 +6,7 @@ security:
     service:
       paths:
         logout: /logout
-      base-url: http://local.todo.ugent.be:8080
+      base-url: https://studententuin.ugent.be
 application:
   base-url: https://studententuin.ugent.be
 
